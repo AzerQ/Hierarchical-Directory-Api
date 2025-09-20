@@ -44,6 +44,11 @@ namespace HierarchicalDirectory.Application
 
         public async Task<CategoryDto> CreateAsync(CategoryDto dto)
         {
+            // Валидация данных
+            var validation = await ValidateAsync(dto.ParentId ?? string.Empty, dto.Data);
+            if (!validation.valid)
+                throw new System.Exception($"Validation failed: {string.Join(", ", validation.errors)}");
+
             var entity = new Category
             {
                 Id = Guid.NewGuid().ToString(),
@@ -62,6 +67,10 @@ namespace HierarchicalDirectory.Application
         {
             var entity = await _repository.GetByIdAsync(id);
             if (entity == null) return null;
+            // Валидация данных
+            var validation = await ValidateAsync(entity.ParentId ?? string.Empty, dto.Data ?? entity.Data);
+            if (!validation.valid)
+                throw new System.Exception($"Validation failed: {string.Join(", ", validation.errors)}");
             entity.Name = dto.Name ?? entity.Name;
             entity.Data = dto.Data?.ToString() ?? entity.Data;
             entity.Schema = dto.Schema?.ToString() ?? entity.Schema;
@@ -76,9 +85,18 @@ namespace HierarchicalDirectory.Application
 
         public async Task<CategoryDto> CreateLeafVersionAsync(string parentId, CategoryDto dto)
         {
-            // Получить все листовые элементы с этим parentId и productCode
+            // Валидация данных
+            var validation = await ValidateAsync(parentId, dto.Data);
+            if (!validation.valid)
+                throw new System.Exception($"Validation failed: {string.Join(", ", validation.errors)}");
+
+            // Получить productCode из dto.Data
+            string newProductCode = ExtractProductCode(dto.Data);
+            if (string.IsNullOrEmpty(newProductCode))
+                throw new System.Exception("productCode is required in leaf data");
+
             var all = await _repository.GetAllAsync();
-            var leaves = all.Where(c => c.ParentId == parentId && c.Children.Count == 0 && c.Data != null && c.Data.Contains(dto.Data?.ToString())).ToList();
+            var leaves = all.Where(c => c.ParentId == parentId && c.Children.Count == 0 && ExtractProductCode(c.Data) == newProductCode).ToList();
             // Сбросить isLatest у предыдущих версий
             foreach (var leaf in leaves)
             {
@@ -96,6 +114,17 @@ namespace HierarchicalDirectory.Application
             };
             await _repository.AddAsync(entity);
             return MapToDto(entity, 0);
+
+        private string ExtractProductCode(object data)
+        {
+            if (data == null) return null;
+            try
+            {
+                var jObj = Newtonsoft.Json.Linq.JObject.Parse(data is string s ? s : Newtonsoft.Json.JsonConvert.SerializeObject(data));
+                return jObj["productCode"]?.ToString();
+            }
+            catch { return null; }
+        }
         }
 
         public async Task<(bool valid, List<string> errors)> ValidateAsync(string id, object data)
