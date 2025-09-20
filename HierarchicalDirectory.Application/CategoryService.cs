@@ -114,17 +114,6 @@ namespace HierarchicalDirectory.Application
             };
             await _repository.AddAsync(entity);
             return MapToDto(entity, 0);
-
-        private string ExtractProductCode(object data)
-        {
-            if (data == null) return null;
-            try
-            {
-                var jObj = Newtonsoft.Json.Linq.JObject.Parse(data is string s ? s : Newtonsoft.Json.JsonConvert.SerializeObject(data));
-                return jObj["productCode"]?.ToString();
-            }
-            catch { return null; }
-        }
         }
 
         public async Task<(bool valid, List<string> errors)> ValidateAsync(string id, object data)
@@ -143,6 +132,18 @@ namespace HierarchicalDirectory.Application
             string dataJson = data is string str ? str : Newtonsoft.Json.JsonConvert.SerializeObject(data);
             var result = JsonSchemaValidator.Validate(schema, dataJson);
             return result;
+        }
+
+        private string ExtractProductCode(object data)
+        {
+            if (data == null) return null;
+            try
+            {
+                var jObj = Newtonsoft.Json.Linq.JObject.Parse(data is string s ? s : Newtonsoft.Json.JsonConvert.SerializeObject(data));
+                return jObj["productCode"]?.ToString();
+            }
+            catch { return null; }
+        }
 
         private async Task<string> FindSchemaRecursive(Category category)
         {
@@ -154,7 +155,6 @@ namespace HierarchicalDirectory.Application
             if (parent == null)
                 return null;
             return await FindSchemaRecursive(parent);
-        }
         }
 
         private CategoryDto MapToDto(Category category, int depth)

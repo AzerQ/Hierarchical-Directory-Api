@@ -54,6 +54,7 @@ namespace HierarchicalDirectory.Infrastructure
                 _context.Categories.Remove(entity);
                 await _context.SaveChangesAsync();
             }
+        }
 
         private async Task DeleteChildrenRecursive(Category parent)
         {
@@ -66,7 +67,6 @@ namespace HierarchicalDirectory.Infrastructure
                     _context.Categories.Remove(childEntity);
                 }
             }
-        }
         }
     }
 }
