@@ -1,27 +1,33 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EmbedIO;
+using EmbedIO.Routing;
+using EmbedIO.WebApi;
 using EmbedIO.WebApi;
 using HierarchicalDirectory.Application;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HierarchicalDirectory.Api
 {
-    public class CategoriesController : WebApiController
+    public enum HttpVerbs
+    {
+        Get,
+        Post,
+        Put,
+        Delete
+    }
+    public sealed class CategoriesController : WebApiController
     {
         private readonly ICategoryService _service;
-        public CategoriesController(ServiceProvider provider)
+        public CategoriesController(ICategoryService service)
         {
-            _service = provider.GetService<ICategoryService>();
+            _service = service;
         }
 
-    [EmbedIO.WebApi.Route(HttpVerbs.Get, "/categories")]
-        public async Task<IEnumerable<CategoryDto>> GetAll(int? depth = null, string? search = null)
-        {
-            return await _service.GetAllAsync(depth, search);
-        }
+    [Route(EmbedIO.HttpVerbs.Get, "/categories")]
+        public Task<IEnumerable<CategoryDto>> GetAll(int? depth = null, string? search = null)
+            => _service.GetAllAsync(depth, search);
 
-    [EmbedIO.WebApi.Route(HttpVerbs.Get, "/categories/{id}")]
+    [Route(EmbedIO.HttpVerbs.Get, "/categories/{id}")]
         public async Task<CategoryDto> GetById(string id, bool includeChildren = false)
         {
             var result = await _service.GetByIdAsync(id, includeChildren);
@@ -30,7 +36,7 @@ namespace HierarchicalDirectory.Api
             return result;
         }
 
-    [EmbedIO.WebApi.Route(HttpVerbs.Post, "/categories/batch")]
+    [Route(EmbedIO.HttpVerbs.Post, "/categories/batch")]
         public async Task<IEnumerable<CategoryDto>> GetBatch([JsonData] BatchRequest request)
         {
             if (request?.Ids == null)
@@ -38,7 +44,7 @@ namespace HierarchicalDirectory.Api
             return await _service.GetBatchAsync(request.Ids, request.IncludeChildren);
         }
 
-    [EmbedIO.WebApi.Route(HttpVerbs.Post, "/categories")]
+    [Route(EmbedIO.HttpVerbs.Post, "/categories")]
         public async Task<CategoryDto> Create([JsonData] CategoryDto dto)
         {
             try
@@ -51,7 +57,7 @@ namespace HierarchicalDirectory.Api
             }
         }
 
-    [EmbedIO.WebApi.Route(HttpVerbs.Put, "/categories/{id}")]
+    [Route(EmbedIO.HttpVerbs.Put, "/categories/{id}")]
         public async Task<CategoryDto> Update(string id, [JsonData] CategoryDto dto)
         {
             try
@@ -67,13 +73,11 @@ namespace HierarchicalDirectory.Api
             }
         }
 
-    [EmbedIO.WebApi.Route(HttpVerbs.Delete, "/categories/{id}")]
-        public async Task Delete(string id)
-        {
-            await _service.DeleteAsync(id);
-        }
+    [Route(EmbedIO.HttpVerbs.Delete, "/categories/{id}")]
+        public Task Delete(string id)
+            => _service.DeleteAsync(id);
 
-    [EmbedIO.WebApi.Route(HttpVerbs.Post, "/categories/{parentId}/leaves")]
+    [Route(EmbedIO.HttpVerbs.Post, "/categories/{parentId}/leaves")]
         public async Task<CategoryDto> CreateLeafVersion(string parentId, [JsonData] CategoryDto dto)
         {
             try
@@ -86,7 +90,7 @@ namespace HierarchicalDirectory.Api
             }
         }
 
-    [EmbedIO.WebApi.Route(HttpVerbs.Post, "/categories/{id}/validate")]
+    [Route(EmbedIO.HttpVerbs.Post, "/categories/{id}/validate")]
         public async Task<object> Validate(string id, [JsonData] ValidateRequest request)
         {
             var result = await _service.ValidateAsync(id, request.Data);
