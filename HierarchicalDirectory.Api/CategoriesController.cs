@@ -24,8 +24,8 @@ namespace HierarchicalDirectory.Api
         }
 
     [Route(EmbedIO.HttpVerbs.Get, "/categories")]
-        public Task<IEnumerable<CategoryDto>> GetAll(int? depth = null, string? search = null)
-            => _service.GetAllAsync(depth, search);
+        public Task<IEnumerable<CategoryDto>> GetAll(int depth = -1, string? search = null)
+            => _service.GetAllAsync(depth == -1?null:depth, search);
 
     [Route(EmbedIO.HttpVerbs.Get, "/categories/{id}")]
         public async Task<CategoryDto> GetById(string id, bool includeChildren = false)

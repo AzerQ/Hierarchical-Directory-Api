@@ -38,7 +38,7 @@ namespace HierarchicalDirectory.Api
 			var url = config["EmbedIO:Url"] ?? "http://localhost:9696";
 			var categoryService = provider.GetService<ICategoryService>();
 			using var server = new WebServer(url)
-				.WithWebApi("/api", m => m.WithController(() => new CategoriesController(categoryService)));
+				.WithWebApi("/api", m => m.WithController(() => new CategoriesController(provider.GetService<ICategoryService>())));
 
 			Log.Information($"Server started at {url}");
 			await server.RunAsync();
