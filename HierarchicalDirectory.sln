@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.AspNetApi", "HierarchicalDirectory.Api\HierarchicalDirectory.AspNetApi.csproj", "{4C2E44F6-BFCD-4772-A1B4-477CEE5C9F59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.Models", "HierarchicalDirectory.Models\HierarchicalDirectory.Models.csproj", "{3AC4710C-84CE-42A8-9059-3E959FBE51ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{4C2E44F6-BFCD-4772-A1B4-477CEE5C9F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C2E44F6-BFCD-4772-A1B4-477CEE5C9F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C2E44F6-BFCD-4772-A1B4-477CEE5C9F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC4710C-84CE-42A8-9059-3E959FBE51ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC4710C-84CE-42A8-9059-3E959FBE51ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC4710C-84CE-42A8-9059-3E959FBE51ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC4710C-84CE-42A8-9059-3E959FBE51ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
