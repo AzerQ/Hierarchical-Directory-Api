@@ -1,6 +1,5 @@
 {
   "name": "Hierarchical-Directory-Api",
-  "service": "devcontainer",
   "dockerFile": "Dockerfile",
   "features": {
     "ghcr.io/devcontainers/features/dotnet:1": {
@@ -24,6 +23,5 @@
       ]
     }
   },
-  "forwardPorts": [9696],
   "remoteUser": "vscode"
 }
