@@ -1,13 +1,9 @@
 {
   "name": "Hierarchical-Directory-Api",
-  "dockerFile": "Dockerfile",
   "features": {
     "ghcr.io/devcontainers/features/dotnet:1": {
       "version": "8.0"
-    },
-    "ghcr.io/devcontainers/features/sqlite:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/azure-cli:1": {}
+    }
   },
   "customizations": {
     "vscode": {
