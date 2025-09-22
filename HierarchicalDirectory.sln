@@ -15,13 +15,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.Model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.RefitClient", "HierarchicalDirectory.RefitClient\HierarchicalDirectory.RefitClient.csproj", "{B4E4615A-9515-463B-97D1-00DCEC191152}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.UnitTests", "HierarchicalDirectory.UnitTests\HierarchicalDirectory.UnitTests.csproj", "{EEB299D8-075C-42E4-B5C1-55FA64033880}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.IntegrationTests", "HierarchicalDirectory.IntegrationTests\HierarchicalDirectory.IntegrationTests.csproj", "{E14312DE-1E48-4C95-A3E6-D89C1B5F31D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{41809D0E-95F8-413B-AB78-5EEF5F04D888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,5 +51,20 @@ Global
 		{B4E4615A-9515-463B-97D1-00DCEC191152}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4E4615A-9515-463B-97D1-00DCEC191152}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4E4615A-9515-463B-97D1-00DCEC191152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB299D8-075C-42E4-B5C1-55FA64033880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB299D8-075C-42E4-B5C1-55FA64033880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB299D8-075C-42E4-B5C1-55FA64033880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB299D8-075C-42E4-B5C1-55FA64033880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E14312DE-1E48-4C95-A3E6-D89C1B5F31D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E14312DE-1E48-4C95-A3E6-D89C1B5F31D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E14312DE-1E48-4C95-A3E6-D89C1B5F31D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E14312DE-1E48-4C95-A3E6-D89C1B5F31D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EEB299D8-075C-42E4-B5C1-55FA64033880} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{E14312DE-1E48-4C95-A3E6-D89C1B5F31D9} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal
