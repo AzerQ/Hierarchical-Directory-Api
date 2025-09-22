@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace HierarchicalDirectory.Application
+namespace HierarchicalDirectory.Models
 {
     /// <summary>
     /// DTO для передачи данных категории между слоями приложения.

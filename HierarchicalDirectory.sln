@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.AspNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.Models", "HierarchicalDirectory.Models\HierarchicalDirectory.Models.csproj", "{3AC4710C-84CE-42A8-9059-3E959FBE51ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDirectory.RefitClient", "HierarchicalDirectory.RefitClient\HierarchicalDirectory.RefitClient.csproj", "{B4E4615A-9515-463B-97D1-00DCEC191152}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{3AC4710C-84CE-42A8-9059-3E959FBE51ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC4710C-84CE-42A8-9059-3E959FBE51ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AC4710C-84CE-42A8-9059-3E959FBE51ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4E4615A-9515-463B-97D1-00DCEC191152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4E4615A-9515-463B-97D1-00DCEC191152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4E4615A-9515-463B-97D1-00DCEC191152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4E4615A-9515-463B-97D1-00DCEC191152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

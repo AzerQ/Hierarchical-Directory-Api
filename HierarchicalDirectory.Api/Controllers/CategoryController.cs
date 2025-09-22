@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using HierarchicalDirectory.Application;
+using HierarchicalDirectory.Models;
 
 namespace HierarchicalDirectory.AspNetApi.Controllers
 {
