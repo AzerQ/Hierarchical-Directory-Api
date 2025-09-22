@@ -5,7 +5,10 @@ namespace HierarchicalDirectory.Infrastructure
 {
     public class DirectoryDbContext : DbContext
     {
-        public DirectoryDbContext(DbContextOptions<DirectoryDbContext> options) : base(options) { }
+        public DirectoryDbContext(DbContextOptions<DirectoryDbContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
         public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
